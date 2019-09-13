@@ -21,15 +21,20 @@ class Graph:
   def printGraph(self):
     print(" NODE - TO - CLOSED - ANCESTOR - ESTIMATE")
     for i in range(len(self.nodes)):
-      print("Node " + str(i+1) + " = ", end = '')
+      print("Node " + str(chr(i+65)) + " = ", end = '')
       self.nodes[i].printNode()
     # print("START NODE = " + str(self.start+1) + "\nGOAL NODE = " + str(self.goal+1))
 
   def setObjective(self, start, goal):
-    self.start = start-1
-    self.goal = goal-1
-    self.nodes[start-1].estimate = 0
-    self.nodes[start-1].ancestor = start-1
+    if(start is goal):
+      print("Start can't be goal")
+      return True
+    start = int(ord(start))-65
+    goal = int(ord(goal))-65
+    self.start = start
+    self.goal = goal
+    self.nodes[self.start].estimate = 0
+    self.nodes[self.start].ancestor = start
 
   def getGoal(self):
     return self.nodes[self.goal]
@@ -39,6 +44,7 @@ class Graph:
     index = 0
     for i in range(len(self.nodes)):
       if(self.nodes[i].estimate < min and not(self.nodes[i].closed)):
+        min = self.nodes[i].estimate
         index = i
     return index
 
@@ -46,8 +52,10 @@ class Graph:
     path = []
     selected = self.goal
     while(not(self.nodes[selected] is self.nodes[self.start])):
-      path.append(selected+1)
+      path.append(selected)
       selected = self.nodes[selected].ancestor
-    path.append(self.start+1)
+    path.append(self.start)
     path.reverse()
+    for i in range(len(path)):
+      path[i] = chr(path[i]+65)
     return path
