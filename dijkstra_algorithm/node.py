@@ -4,8 +4,12 @@ class Node:
   def __init__(self):
     self.point = []
     self.closed = False
-    self.predesc = -1
+    self.ancestor = -1
     self.estimate = inf
   
   def printNode(self):
-    print(str(self.point) + " " + str(self.closed) + " " + str(self.predesc) + " " + str(self.estimate))
+    # print(" NODE - TO - CLOSED - ANCESTOR - ESTIMATE")
+    print(str(self.point) + " " + str(self.closed) + " " + str(self.ancestor) + " " + str(self.estimate))
+
+  def close(self):
+    self.closed = True
