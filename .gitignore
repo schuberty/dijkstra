@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# vscode
+dijkstra_algorithm/.vscode/launch.json
+
