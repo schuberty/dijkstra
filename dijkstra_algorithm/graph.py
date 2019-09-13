@@ -13,9 +13,13 @@ class Graph:
     with open(self.file, 'r') as file:
       for line in file:
         node = Node()
-        for c in line:
-          if c.isdigit():
+        c = ""
+        for i in range(len(line)):
+          if(line[i].isdecimal()):
+            c = c + line[i]
+          else:
             node.point.append(int(c))
+            c = ""
         self.nodes.append(node)
 
   def printGraph(self):
