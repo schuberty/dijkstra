@@ -8,6 +8,9 @@ def checkAllClosed(graph):
   return True
 
 def getLessEstimate(graph):
+  """
+  @return índice do nodo aberto que tiver a menor estimativa
+  """
   min = inf
   index = 0
   for i in range(len(graph.nodes)):
@@ -17,11 +20,14 @@ def getLessEstimate(graph):
   return index
 
 def dijkstra(graph):
+  """
+  manipula o grafo passado como parâmetro e aplica o algoritmo de dijkstra
+  """
   while(not(checkAllClosed(graph))):
     selected = getLessEstimate(graph)
     graph.nodes[selected].close()
     for i in range(len(graph.nodes[selected].point)):
-      if(not(graph.nodes[selected] is graph.nodes[i]) and not(graph.nodes[i].closed) and graph.nodes[selected].point[i] != 0):
+      if(not(graph.nodes[i].closed) and graph.nodes[selected].point[i] != 0):
         sumEstimate = graph.nodes[selected].estimate + graph.nodes[selected].point[i]
         if(sumEstimate < graph.nodes[i].estimate):
           graph.nodes[i].estimate = sumEstimate
