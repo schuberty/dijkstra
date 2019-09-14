@@ -1,13 +1,46 @@
-from node import *
+inf = float('inf')
+
+class Node:
+  """
+  save each node info
+  @para point    : each index has value for other node,
+                   or zero if has no connection;
+  @para closed   : if it is closed or not;
+  @para ancestor : index to the ancestor in the graph;
+  @para estimate : estimate from the goal node in the graph.
+  """
+  def __init__(self):
+    self.point = []
+    self.closed = False
+    self.ancestor = -1
+    self.estimate = inf
+  
+  def printNode(self):
+    # print(" NODE - TO - CLOSED - ANCESTOR - ESTIMATE")
+    print(str(self.point) + " " + str(self.closed) + " " + str(chr(self.ancestor+65)) + " " + str(self.estimate))
+
+  def close(self):
+    self.closed = True
 
 class Graph:
+  """
+  generate and manage the graph
+  @para nodes : store nodes info
+  @para file  : file name to generate the graph
+  @para start : index for start node
+  @para goal  : index for goal node
+  """
   def __init__(self, fileName):
     self.nodes = []
     self.file = fileName
     self.start = -1
     self.goal = -1
+    self.setNodes()
 
-  def getNodes(self):
+  def setNodes(self):
+    """
+    from _file_ generate the nodes for _nodes_
+    """
     if(len(self.nodes) != 0):
       return
     with open(self.file, 'r') as file:
@@ -43,15 +76,6 @@ class Graph:
   def getGoal(self):
     return self.nodes[self.goal]
 
-  def getLessEstimate(self):
-    min = inf
-    index = 0
-    for i in range(len(self.nodes)):
-      if(self.nodes[i].estimate < min and not(self.nodes[i].closed)):
-        min = self.nodes[i].estimate
-        index = i
-    return index
-
   def getPath(self):
     path = []
     selected = self.goal
@@ -62,4 +86,4 @@ class Graph:
     path.reverse()
     for i in range(len(path)):
       path[i] = chr(path[i]+65)
-    return path
+    return path, self.nodes[self.goal].estimate
