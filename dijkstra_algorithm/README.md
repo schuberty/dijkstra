@@ -14,6 +14,7 @@
     0 2 3\n
     0 0 5\n
     0 0 1\n
+    
 - No exemplo, foi criado um grafo G[3][3] com uma linha em branco no final
 
 
