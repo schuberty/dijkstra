@@ -35,10 +35,6 @@ class Graph:
     """
     do arquivo, gera os nodos no grafo
     """
-    graphFile = Path(self.file)
-    if(not(graphFile.exists() and graphFile.is_file())):
-      print("No graph file exists to execute algorith...")
-      return
     if(len(self.nodes) != 0):
       return
     with open(self.file, 'r') as file:
