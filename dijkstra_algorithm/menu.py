@@ -1,5 +1,4 @@
 from sys import argv
-from time import sleep
 from pathlib import Path
 from graph import Graph
 from algorithm import dijkstra
