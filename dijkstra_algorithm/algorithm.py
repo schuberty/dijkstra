@@ -23,7 +23,13 @@ def dijkstra(graph):
   """
   manipula o grafo passado como parâmetro e aplica o algoritmo de dijkstra
   """
+  erro = 0
   while(not(checkAllClosed(graph))):
+    if(erro > 1000000):
+      print("ERRO! Dijkstra executado 1.000.001 vezes...")
+      print("Provavelmente é um grafo desconexo!")
+      exit()
+    erro += 1
     selected = getLessEstimate(graph)
     graph.nodes[selected].close()
     for i in range(len(graph.nodes[selected].point)):
