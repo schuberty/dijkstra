@@ -43,22 +43,32 @@ def run():
   print("\\--" + "--"*14 + "---/")
   print(" Executando Algoritmo de DIJKSTRA")
   dijkstra(graph)
-  print(" Algoritmo executado...")
+  print(" Algoritmo executado!")
   print("/--" + "--"*14 + "---\\")
 
   return graph
 
-def result(graph):
-  print("Vértices = { ", end='')
-  for i in range(len(graph.nodes)):
-    if(i != graph.start):
-      print(chr(i+65) + " ", end='')
-  print("}")
-  v = input("Digite um vértice > ")
-  v = ord(v)-65
-  if(v < len(graph.nodes) and v >= 0 and v < 26 and v != graph.start):
-    path = graph.getPath(v)
-    print(path)
+def loopResult(graph):
+  v = chr(graph.start+65)
+  while(v.isascii()):
+    v = ord(v)-65
+    click.clear()
+    graph.printGraph()
+    print("________________________________")
+    if(v == graph.start):
+      print("Digite um vértice diferente do inicial (0 para voltar)")
+    elif(v < len(graph.nodes) and v >= 0 and v < 26 and v != graph.start):
+      path = graph.getPath(v)
+      print("  ", end='')
+      for node in path:
+        print(node + "->", end='')
+      print("#, com custo " + str(graph.nodes[v].estimate))
+      print("Digite um vértice (0 para voltar)")
+    elif(v == -17):
+      return
+    else:
+      print("Digite um vértice válido (0 para voltar)")
+    v = input(" > ")
 
 def loop(graph):
   menu()
@@ -66,7 +76,8 @@ def loop(graph):
   c = input(" > ")
   while(c.isdigit):
     if(c == '1'):
-      result(graph)
+      loopResult(graph)
+      click.clear()
     elif(c == '2'):
       click.clear()
       print("  Grafo em Lista de Adjacência:")
