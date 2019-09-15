@@ -61,7 +61,7 @@ class Graph:
 
   def getPath(self, goal):
     """
-    @return lista com os nome dos nodos até o nodo desejado
+    @return lista com o nome dos nodos até o nodo desejado
     """
     selected = goal
     path = []
