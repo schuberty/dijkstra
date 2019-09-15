@@ -16,7 +16,7 @@
 ```
 - No exemplo, foi criado um grafo G[4][4], tendo 4 vértices e 5 arestas.
 
-##### Clonar este repositório entrar no diretório atual e executar:
+##### Clonar este repositório, entrar no diretório atual e executar:
 ```
 python dijkstra.py [ARQUIVO] [VÉRTICE INICIAL]
 ```
