@@ -71,7 +71,7 @@ def loopResult(graph):
 
 def loop(graph):
   menu()
-  print(" Digite um valor (1-4)")
+  print("Digite um valor (1-4)")
   c = input(" > ")
   while(c.isdigit):
     if(c == '1'):
